@@ -1,0 +1,191 @@
+LAB 2
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:7b:92:e6 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.159.129/24 brd 192.168.159.255 scope global dynamic noprefixroute eth0
+       valid_lft 1592sec preferred_lft 1592sec
+    inet6 fe80::20c:29ff:fe7b:92e6/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 2e:fa:07:1b:ae:3e brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
+    link/none 
+    inet 10.10.15.254/23 brd 10.10.15.255 scope global tun0
+       valid_lft forever preferred_lft forever
+    inet6 dead:beef:2::11fc/64 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f57:959:a052:84ad/64 scope link stable-privacy proto kernel_ll 
+       valid_lft forever preferred_lft forever
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ping 10.129.60.76
+PING 10.129.60.76 (10.129.60.76) 56(84) bytes of data.
+64 bytes from 10.129.60.76: icmp_seq=1 ttl=63 time=284 ms
+64 bytes from 10.129.60.76: icmp_seq=2 ttl=63 time=340 ms
+64 bytes from 10.129.60.76: icmp_seq=3 ttl=63 time=300 ms
+64 bytes from 10.129.60.76: icmp_seq=4 ttl=63 time=276 ms
+^C
+--- 10.129.60.76 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 276.499/300.248/339.948/24.455 ms
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo nmap 10.129.60.76
+[sudo] password for ananthan: 
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-06-14 12:18 +0530
+Nmap scan report for 10.129.60.76
+Host is up (0.31s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE
+21/tcp open  ftp
+
+Nmap done: 1 IP address (1 host up) scanned in 4.00 seconds
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo -sV 10.129.60.76 
+usage: sudo -h | -K | -k | -V
+usage: sudo -v [-ABkNnS] [-g group] [-h host] [-p prompt] [-u user]
+usage: sudo -l [-ABkNnS] [-g group] [-h host] [-p prompt] [-U user]
+            [-u user] [command [arg ...]]
+usage: sudo [-ABbEHkNnPS] [-r role] [-t type] [-C num] [-D directory]
+            [-g group] [-h host] [-p prompt] [-R directory] [-T timeout]
+            [-u user] [VAR=value] [-i | -s] [command [arg ...]]
+usage: sudo -e [-ABkNnS] [-r role] [-t type] [-C num] [-D directory]
+            [-g group] [-h host] [-p prompt] [-R directory] [-T timeout]
+            [-u user] file ...
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo nmap  -sV 10.129.60.76
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-06-14 12:20 +0530
+Nmap scan report for 10.129.60.76
+Host is up (0.39s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 4.65 seconds
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo apt install ftp -y    
+Upgrading:                      
+  ftp  tnftp
+
+Summary:
+  Upgrading: 2, Installing: 0, Removing: 0, Not Upgrading: 2213
+  Download size: 164 kB
+  Freed space: 2,048 B
+
+Get:1 http://kali.download/kali kali-rolling/main amd64 tnftp amd64 20260211-2 [128 kB]
+Get:2 http://mirrors.esto.network/kali kali-rolling/main amd64 ftp all 20260211-2 [35.5 kB]
+Fetched 164 kB in 2s (104 kB/s)
+(Reading database… 558932 files and directories currently installed.)
+Preparing to unpack …/tnftp_20260211-2_amd64.deb…
+Unpacking tnftp (20260211-2) over (20260211-1)…
+Preparing to unpack …/ftp_20260211-2_all.deb…
+Unpacking ftp (20260211-2) over (20260211-1)…
+Setting up tnftp (20260211-2)…
+Setting up ftp (20260211-2)…
+Processing triggers for man-db (2.13.1-1)…
+Processing triggers for kali-menu (2026.1.5)…
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ftp -?
+usage: ftp [-46AadefginpRtVv] [-b BUFSIZE] [-H HEADER] [-N NETRC] [-o OUTPUT]
+           [-P PORT] [-q QUITTIME] [-r RETRY] [-s SRCADDR] [-T DIR,MAX[,INC]]
+           [-x XFERSIZE]
+           [[USER@]HOST [PORT]]
+           [[USER@]HOST:[PATH][/]]
+           [file:///PATH]
+           [ftp://[USER[:PASSWORD]@]HOST[:PORT]/PATH[/][;type=TYPE]]
+           [http://[USER[:PASSWORD]@]HOST[:PORT]/PATH]
+           [https://[USER[:PASSWORD]@]HOST[:PORT]/PATH]
+           ...
+       ftp -u URL FILE ...
+       ftp -?
+  -4            Only use IPv4 addresses
+  -6            Only use IPv6 addresses
+  -A            Force active mode
+  -a            Use anonymous login
+  -b BUFSIZE    Use BUFSIZE bytes for fetch buffer
+  -d            Enable debugging
+  -e            Disable command-line editing
+  -f            Force cache reload for FTP or HTTP proxy transfers
+  -g            Disable file name globbing
+  -H HEADER     Add custom HTTP header HEADER for HTTP transfers;
+                may be repeated for additional headers
+  -i            Disable interactive prompt during multiple file transfers
+  -N NETRC      Use NETRC instead of ~/.netrc
+  -n            Disable auto-login
+  -o OUTPUT     Save auto-fetched files to OUTPUT
+  -P PORT       Use port PORT
+  -p            Force passive mode
+  -q QUITTIME   Quit if connection stalls for QUITTIME seconds
+  -R            Restart non-proxy auto-fetch
+  -r RETRY      Retry failed connection attempts after RETRY seconds
+  -s SRCADDR    Use IP source address SRCADDR
+  -T DIR,MAX[,INC]
+                Set maximum transfer rate for direction DIR (all, get, or put)
+                to MAX bytes/s, with optional increment INC bytes/s
+  -t            Enable packet tracing
+  -u URL        URL to upload file arguments to
+  -V            Disable verbose and progress
+  -v            Enable verbose and progress
+  -x XFERSIZE   Set socket send and receive size to XFERSIZE bytes
+  -?            Display this help and exit
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ftp 10.129.60.76
+Connected to 10.129.60.76.
+220 (vsFTPd 3.0.3)
+Name (10.129.60.76:ananthan): anonymous
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> -h
+?Invalid command.
+ftp> help
+Commands may be abbreviated.  Commands are:
+
+!		case		delete		features	help		macdef		mode		nmap		preserve	rate		rhelp		size		trace		?
+$		cd		dir		fget		idle		mdelete		modtime		ntrans		progress	rcvbuf		rmdir		sndbuf		type
+account		cdup		disconnect	form		image		mdir		more		open		prompt		recv		rstatus		status		umask
+append		chmod		edit		ftp		lcd		mget		mput		page		proxy		reget		runique		struct		unset
+ascii		close		epsv		gate		less		mkdir		mreget		passive		put		remopts		send		sunique		usage
+bell		connect		epsv4		get		lpage		mls		msend		pdir		pwd		rename		sendport	system		user
+binary		cr		epsv6		glob		lpwd		mlsd		newer		pls		quit		reset		set		tenex		verbose
+bye		debug		exit		hash		ls		mlst		nlist		pmlsd		quote		restart		site		throttle	xferbuf
+ftp> ls
+229 Entering Extended Passive Mode (|||11699|)
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0              32 Jun 04  2021 flag.txt
+226 Directory send OK.
+ftp> get flag.txt
+local: flag.txt remote: flag.txt
+229 Entering Extended Passive Mode (|||13179|)
+150 Opening BINARY mode data connection for flag.txt (32 bytes).
+100% |************************************************************************************************************************************************************************************************|    32      176.55 KiB/s    00:00 ETA
+226 Transfer complete.
+32 bytes received in 00:00 (0.09 KiB/s)
+ftp> bye
+221 Goodbye.
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ls
+ flag.txt  'HTB lab 1.txt'   htb.ovpn
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ cat flag.txt
+035db21c881520061c53e0536e44f815 
