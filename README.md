@@ -6,4 +6,4 @@ I document my Hack The Box learning journey here.
 
 - [Meow](./Meow/README.md)
 -  [Fawn](FAWN)
-- Dancing write up(Dancing write-up )
+- Dancing write up(https://github.com/ananthancyber/Hack-the-box-lab/tree/main/Dancing%20write-up)
