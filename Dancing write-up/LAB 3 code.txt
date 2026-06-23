@@ -1,0 +1,226 @@
+                                                                                
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:7b:92:e6 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.159.129/24 brd 192.168.159.255 scope global dynamic noprefixroute eth0
+       valid_lft 1635sec preferred_lft 1635sec
+    inet6 fe80::20c:29ff:fe7b:92e6/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 42:59:7f:6e:41:cb brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
+    link/none 
+    inet 10.10.14.107/23 brd 10.10.15.255 scope global tun0
+       valid_lft forever preferred_lft forever
+    inet6 dead:beef:2::1069/64 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::9cf3:dd62:c19f:2114/64 scope link stable-privacy proto kernel_ll 
+       valid_lft forever preferred_lft forever
+                                                                                
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo nmap -sV 10.129.77.181
+[sudo] password for ananthan: 
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-06-20 20:31 +0530
+Nmap scan report for 10.129.77.181
+Host is up (0.28s latency).
+Not shown: 996 closed tcp ports (reset)
+PORT     STATE SERVICE       VERSION
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 45.56 seconds
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo apt-get install smbclient
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Solving dependencies... Done
+The following additional packages will be installed:
+  libldb2 libsmbclient0 libtalloc2 libtdb1 libtevent0t64 libwbclient0 python3-ldb python3-samba python3-talloc python3-tdb samba samba-common samba-common-bin samba-libs tdb-tools
+The following packages will be upgraded:
+  libldb2 libsmbclient0 libtalloc2 libtdb1 libtevent0t64 libwbclient0 python3-ldb python3-samba python3-talloc python3-tdb samba samba-common samba-common-bin samba-libs smbclient tdb-tools
+16 upgraded, 0 newly installed, 0 to remove and 2197 not upgraded.
+Need to get 12.7 MB of archives.
+After this operation, 378 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://http.kali.org/kali kali-rolling/main amd64 libtalloc2 amd64 2:2.4.4+samba4.24.3+dfsg-1 [45.0 kB]
+Get:2 http://http.kali.org/kali kali-rolling/main amd64 libtevent0t64 amd64 2:0.17.1+samba4.24.3+dfsg-1 [59.8 kB]
+Get:3 http://http.kali.org/kali kali-rolling/main amd64 libsmbclient0 amd64 2:4.24.3+dfsg-1 [80.9 kB]
+Get:4 http://http.kali.org/kali kali-rolling/main amd64 samba-common all 2:4.24.3+dfsg-1 [45.0 kB]
+Get:5 http://http.kali.org/kali kali-rolling/main amd64 smbclient amd64 2:4.24.3+dfsg-1 [462 kB]  
+Get:6 http://http.kali.org/kali kali-rolling/main amd64 python3-samba amd64 2:4.24.3+dfsg-1 [2,891 kB]         
+Get:8 http://http.kali.org/kali kali-rolling/main amd64 libtdb1 amd64 2:1.4.15+samba4.24.3+dfsg-1 [64.1 kB]
+Get:9 http://http.kali.org/kali kali-rolling/main amd64 python3-tdb amd64 2:1.4.15+samba4.24.3+dfsg-1 [35.4 kB]
+Get:10 http://http.kali.org/kali kali-rolling/main amd64 python3-talloc amd64 2:2.4.4+samba4.24.3+dfsg-1 [33.4 kB]
+Get:11 http://http.kali.org/kali kali-rolling/main amd64 samba-common-bin amd64 2:4.24.3+dfsg-1 [1,364 kB]
+Get:14 http://http.kali.org/kali kali-rolling/main amd64 libldb2 amd64 2:2.11.0+samba4.24.3+dfsg-1 [161 kB]
+Get:15 http://http.kali.org/kali kali-rolling/main amd64 samba-libs amd64 2:4.24.3+dfsg-1 [6,131 kB]
+Get:7 http://http.kali.org/kali kali-rolling/main amd64 python3-ldb amd64 2:2.11.0+samba4.24.3+dfsg-1 [58.8 kB]
+Get:16 http://http.kali.org/kali kali-rolling/main amd64 tdb-tools amd64 2:1.4.15+samba4.24.3+dfsg-1 [46.7 kB]
+Get:12 http://http.kali.org/kali kali-rolling/main amd64 samba amd64 2:4.24.3+dfsg-1 [1,202 kB]
+Get:13 http://http.kali.org/kali kali-rolling/main amd64 libwbclient0 amd64 2:4.24.3+dfsg-1 [52.3 kB]
+Fetched 12.7 MB in 2s (5,431 kB/s)
+(Reading database… 558932 files and directories currently installed.)
+Preparing to unpack …/00-libtalloc2_2%3a2.4.4+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking libtalloc2:amd64 (2:2.4.4+samba4.24.3+dfsg-1) over (2:2.4.3+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/01-libtevent0t64_2%3a0.17.1+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking libtevent0t64:amd64 (2:0.17.1+samba4.24.3+dfsg-1) over (2:0.17.1+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/02-libsmbclient0_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking libsmbclient0:amd64 (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/03-samba-common_2%3a4.24.3+dfsg-1_all.deb…
+Unpacking samba-common (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1)…
+Preparing to unpack …/04-smbclient_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking smbclient (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/05-python3-samba_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking python3-samba (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/06-python3-ldb_2%3a2.11.0+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking python3-ldb (2:2.11.0+samba4.24.3+dfsg-1) over (2:2.11.0+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/07-libtdb1_2%3a1.4.15+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking libtdb1:amd64 (2:1.4.15+samba4.24.3+dfsg-1) over (2:1.4.14+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/08-python3-tdb_2%3a1.4.15+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking python3-tdb (2:1.4.15+samba4.24.3+dfsg-1) over (2:1.4.14+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/09-python3-talloc_2%3a2.4.4+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking python3-talloc:amd64 (2:2.4.4+samba4.24.3+dfsg-1) over (2:2.4.3+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/10-samba-common-bin_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking samba-common-bin (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/11-samba_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking samba (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/12-libwbclient0_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking libwbclient0:amd64 (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/13-libldb2_2%3a2.11.0+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking libldb2:amd64 (2:2.11.0+samba4.24.3+dfsg-1) over (2:2.11.0+samba4.23.6+dfsg-1+b1)…
+Preparing to unpack …/14-samba-libs_2%3a4.24.3+dfsg-1_amd64.deb…
+Unpacking samba-libs:amd64 (2:4.24.3+dfsg-1) over (2:4.23.6+dfsg-1+b1)…
+Preparing to unpack …/15-tdb-tools_2%3a1.4.15+samba4.24.3+dfsg-1_amd64.deb…
+Unpacking tdb-tools (2:1.4.15+samba4.24.3+dfsg-1) over (2:1.4.14+samba4.23.6+dfsg-1+b1)…
+Setting up libtdb1:amd64 (2:1.4.15+samba4.24.3+dfsg-1)…
+Setting up samba-common (2:4.24.3+dfsg-1)…
+Setting up libwbclient0:amd64 (2:4.24.3+dfsg-1)…
+Setting up libtalloc2:amd64 (2:2.4.4+samba4.24.3+dfsg-1)…
+Setting up python3-tdb (2:1.4.15+samba4.24.3+dfsg-1)…
+Setting up tdb-tools (2:1.4.15+samba4.24.3+dfsg-1)…
+update-alternatives: using /usr/bin/tdbbackup.tdbtools to provide /usr/bin/tdbbackup (tdbbackup) in auto mode
+Setting up libtevent0t64:amd64 (2:0.17.1+samba4.24.3+dfsg-1)…
+Setting up python3-talloc:amd64 (2:2.4.4+samba4.24.3+dfsg-1)…
+Setting up libldb2:amd64 (2:2.11.0+samba4.24.3+dfsg-1)…
+Setting up samba-libs:amd64 (2:4.24.3+dfsg-1)…
+Setting up python3-ldb (2:2.11.0+samba4.24.3+dfsg-1)…
+Setting up samba-common-bin (2:4.24.3+dfsg-1)…
+Setting up libsmbclient0:amd64 (2:4.24.3+dfsg-1)…
+Setting up python3-samba (2:4.24.3+dfsg-1)…
+Setting up samba (2:4.24.3+dfsg-1)…
+smbd.service is a disabled or a static unit not running, not starting it.
+Setting up smbclient (2:4.24.3+dfsg-1)…
+Processing triggers for libc-bin (2.42-13)…
+Processing triggers for man-db (2.13.1-1)…
+Processing triggers for kali-menu (2026.1.5)…
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ smbclient -L 10.129.77.181    
+Password for [WORKGROUP\ananthan]:
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	IPC$            IPC       Remote IPC
+	WorkShares      Disk      
+Reconnecting with SMB1 for workgroup listing.
+do_connect: Connection to 10.129.77.181 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+Unable to connect with SMB1 -- no workgroup available
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ smbclient \\\\10.129.77.181\\ADMIN$
+Password for [WORKGROUP\ananthan]:
+tree connect failed: NT_STATUS_ACCESS_DENIED
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ smbclient 10.129.77.181 ADMIN$     
+
+10.129.77.181: Not enough '\' characters in service
+Usage: smbclient [-?EgqBNPkV] [-?|--help] [--usage] [-M|--message=HOST] [-I|--ip-address=IP] [-E|--stderr] [-L|--list=HOST] [-T|--tar=<c|x>IXFvgbNan] [-D|--directory=DIR] [-c|--command=STRING] [-b|--send-buffer=BYTES]
+        [-t|--timeout=SECONDS] [-p|--port=PORT] [-g|--grepable] [-q|--quiet] [-B|--browse] [-d|--debuglevel=DEBUGLEVEL] [--debug-stdout] [-s|--configfile=CONFIGFILE] [--option=name=value] [-l|--log-basename=LOGFILEBASE]
+        [--leak-report] [--leak-report-full] [-R|--name-resolve=NAME-RESOLVE-ORDER] [-O|--socket-options=SOCKETOPTIONS] [-m|--max-protocol=MAXPROTOCOL] [-n|--netbiosname=NETBIOSNAME] [--netbios-scope=SCOPE]
+        [-W|--workgroup=WORKGROUP] [--realm=REALM] [-U|--user=[DOMAIN/]USERNAME[%PASSWORD]] [-N|--no-pass] [--password=STRING] [--pw-nt-hash] [-A|--authentication-file=FILE] [-P|--machine-pass] [--simple-bind-dn=DN]
+        [--use-kerberos=desired|required|off] [--use-krb5-ccache=CCACHE] [--use-winbind-ccache] [--client-protection=sign|encrypt|off] [-k|--kerberos] [-V|--version] [OPTIONS] service <password>
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ smbclient \\\\10.129.77.181\\C$    
+Password for [WORKGROUP\ananthan]:
+tree connect failed: NT_STATUS_ACCESS_DENIED
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ smbclient \\\\10.129.77.181\\Workshares
+Password for [WORKGROUP\ananthan]:
+Try "help" to get a list of possible commands.
+smb: \> help
+?              allinfo        altname        archive        backup         
+blocksize      cancel         case_sensitive cd             chmod          
+chown          close          del            deltree        dir            
+du             echo           exit           get            getfacl        
+geteas         hardlink       help           history        iosize         
+lcd            link           lock           lowercase      ls             
+l              mask           md             mget           mkdir          
+mkfifo         more           mput           newer          notify         
+open           posix          posix_encrypt  posix_open     posix_mkdir    
+posix_rmdir    posix_unlink   posix_whoami   print          prompt         
+put            pwd            q              queue          quit           
+readlink       rd             recurse        reget          rename         
+reput          rm             rmdir          showacls       setea          
+setmode        scopy          stat           symlink        tar            
+tarmode        timeout        translate      unlock         volume         
+vuid           wdel           logon          listconnect    showconnect    
+tcon           tdis           tid            utimes         logoff         
+..             !              
+smb: \> ls
+  .                                   D        0  Mon Mar 29 13:52:01 2021
+  ..                                  D        0  Mon Mar 29 13:52:01 2021
+  Amy.J                               D        0  Mon Mar 29 14:38:24 2021
+  James.P                             D        0  Thu Jun  3 14:08:03 2021
+
+		5114111 blocks of size 4096. 1750558 blocks available
+smb: \> cd Amy.J
+smb: \Amy.J\> ls
+  .                                   D        0  Mon Mar 29 14:38:24 2021
+  ..                                  D        0  Mon Mar 29 14:38:24 2021
+  worknotes.txt                       A       94  Fri Mar 26 16:30:37 2021
+ge
+		5114111 blocks of size 4096. 1750527 blocks available
+smb: \Amy.J\> get worknotes.txt
+getting file \Amy.J\worknotes.txt of size 94 as worknotes.txt (0.0 KiloBytes/sec) (average 0.0 KiloBytes/sec)
+smb: \Amy.J\> cd ..
+smb: \> cd James.P
+smb: \James.P\> ls
+  .                                   D        0  Thu Jun  3 14:08:03 2021
+  ..                                  D        0  Thu Jun  3 14:08:03 2021
+  flag.txt                            A       32  Mon Mar 29 14:56:57 2021
+get
+		5114111 blocks of size 4096. 1750527 blocks available
+smb: \James.P\> get flag.txt
+getting file \James.P\flag.txt of size 32 as flag.txt (0.0 KiloBytes/sec) (average 0.0 KiloBytes/sec)
+smb: \James.P\> exit
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ls
+ flag.txt  'HTB lab 1.txt'   htb.ovpn  'lab 2fawn .txt'   worknotes.txt
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ cat flag.txt
+5f61c10dffbc77a704d76016a22f1664                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ 
+
