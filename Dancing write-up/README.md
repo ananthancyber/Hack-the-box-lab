@@ -1,4 +1,4 @@
-# Dancing Write up - Hack The Box Walkthrough
+# Dancing- Hack The Box Walkthrough
 
 ## Machine Information
 
