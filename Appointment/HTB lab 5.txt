@@ -1,0 +1,127 @@
+h: corrupt history file /home/ananthan/.zsh_history
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:7b:92:e6 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.159.129/24 brd 192.168.159.255 scope global dynamic noprefixroute eth0
+       valid_lft 1687sec preferred_lft 1687sec
+    inet6 fe80::20c:29ff:fe7b:92e6/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+    link/ether 46:ab:1d:c1:cb:e9 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+4: tun0: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UNKNOWN group default qlen 500
+    link/none 
+    inet 10.10.14.84/23 brd 10.10.15.255 scope global tun0
+       valid_lft forever preferred_lft forever
+    inet6 dead:beef:2::1052/64 scope global 
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42e1:d6de:35c4:6bc9/64 scope link stable-privacy proto kernel_ll 
+       valid_lft forever preferred_lft forever
+                                                                                
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo nmap -sV -sV 10.129.130.166
+[sudo] password for ananthan: 
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-07-08 19:46 +0530
+Stats: 0:00:22 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 0.00% done
+Nmap scan report for 10.129.130.166
+Host is up (0.34s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.38
+Service Info: Host: 127.0.0.1
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 40.52 seconds
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ sudo nmap -sC -sV 10.129.130.166
+Starting Nmap 7.98 ( https://nmap.org ) at 2026-07-08 19:50 +0530
+Nmap scan report for 10.129.130.166
+Host is up (0.30s latency).
+Not shown: 999 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.38
+Service Info: Host: 127.0.0.1
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 106.56 seconds
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ gobuster --version
+gobuster version 3.8.2
+Build info:
+go	go1.24.9
+path	github.com/OJ/gobuster
+build	-buildmode=exe
+build	-compiler=gc
+build	-trimpath=true
+build	DefaultGODEBUG=asynctimerchan=1,gotestjsonbuildtext=1,gotypesalias=0,httpcookiemaxnum=0,httplaxcontentlength=1,httpmuxgo121=1,httpservecontentkeepheaders=1,multipathtcp=0,netedns0=0,panicnil=1,randseednop=0,rsa1024min=0,tls10server=1,tls3des=1,tlsmlkem=0,tlsrsakex=1,tlsunsafeekm=1,winreadlinkvolume=0,winsymlink=0,x509keypairleaf=0,x509negativeserial=1,x509rsacrt=0,x509usepolicies=0
+build	CGO_ENABLED=1
+build	GOARCH=amd64
+build	GOOS=linux
+build	GOAMD64=v1
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ gobuster dir -u http://10.129.130.166 -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8.2
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.129.130.166
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8.2
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+.hta                 (Status: 403) [Size: 279]
+.htaccess            (Status: 403) [Size: 279]
+.htpasswd            (Status: 403) [Size: 279]
+css                  (Status: 301) [Size: 314] [--> http://10.129.130.166/css/]
+fonts                (Status: 301) [Size: 316] [--> http://10.129.130.166/fonts/]
+images               (Status: 301) [Size: 317] [--> http://10.129.130.166/images/]
+index.php            (Status: 200) [Size: 4896]
+js                   (Status: 301) [Size: 313] [--> http://10.129.130.166/js/]
+server-status        (Status: 403) [Size: 279]
+vendor               (Status: 301) [Size: 317] [--> http://10.129.130.166/vendor/]
+Progress: 4613 / 4613 (100.00%)
+===============================================================
+Finished
+===============================================================
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ping 200~10.129.130.166 
+ping: 200~10.129.130.166: Name or service not known
+                                                                                                                                                                                                                                             
+┌──(ananthan㉿kali)-[~/Desktop]
+└─$ ping 10.129.130.166 
+PING 10.129.130.166 (10.129.130.166) 56(84) bytes of data.
+64 bytes from 10.129.130.166: icmp_seq=1 ttl=63 time=735 ms
+64 bytes from 10.129.130.166: icmp_seq=2 ttl=63 time=1033 ms
+64 bytes from 10.129.130.166: icmp_seq=3 ttl=63 time=376 ms
+64 bytes from 10.129.130.166: icmp_seq=4 ttl=63 time=1018 ms
+64 bytes from 10.129.130.166: icmp_seq=5 ttl=63 time=710 ms
+64 bytes from 10.129.130.166: icmp_seq=6 ttl=63 time=1014 ms
+64 bytes from 10.129.130.166: icmp_seq=7 ttl=63 time=674 ms
+64 bytes from 10.129.130.166: icmp_seq=8 ttl=63 time=282 ms
+^C64 bytes from 10.129.130.166: icmp_seq=9 ttl=63 time=398 ms
+64 bytes from 10.129.130.166: icmp_seq=10 ttl=63 time=546 ms
+64 bytes from 10.129.130.166: icmp_seq=11 ttl=63 time=469 ms
+64 bytes from 10.129.130.166: icmp_seq=12 ttl=63 time=483 ms
+64 bytes from 10.129.130.166: icmp_seq=13 ttl=63 time=722 ms
+^C
+--- 10.129.130.166 ping statistics ---
+14 packets transmitted, 13 received, 7.14286% packet loss, time 13067ms
+rtt min/avg/max/mdev = 281.728/650.694/1033.062/244.417 ms, pipe 2
